@@ -1,12 +1,12 @@
-pipeline {
+             pipeline {
     agent any
     stages {
-        stage('ST9533831p') {
+        stage('ST16269405p') {
             steps {
-                echo "ST9533831p: Environement is prepared. Start to roll out to Test server"
+                echo "ST16269405p: Environement is prepared. Start to roll out to Test server"
             }
         }
-          stage('ST9533831p') {
+          stage('ST26269405p') {
             when {
                 expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
             }
@@ -28,15 +28,15 @@ pipeline {
             }
         }
       
-        stage('ST9533831p') {
+        stage('ST36269405p') {
             steps {
                 sh 'curl -Is http://testsvr6269405p.localdomain | head -n 1 > /tmp/TEST-result-file.txt'
 				echo 'ST6269405p: Test result for TEST server is generated: TEST-result-file'
             }
         }
-        stage('ST9533831p') {
+        stage('ST46269405p') {
             steps {
-                echo "ST9533831p: Test server's testing result has been inspected"
+                echo "ST46269405p: Test server's testing result has been inspected"
                     script{
                         v2 = input ( 
 		                       			message: 'Action',
@@ -46,7 +46,7 @@ pipeline {
                
             }
         }
-        stage('ST9533831p') {
+        stage('ST56269405p') {
             when {
                 expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
             }
@@ -54,7 +54,7 @@ pipeline {
                 script {
                             if (v2 == 'Proceed Production') 
 					{
-                    echo 'ST9533831p: Proceed to Production Phase'
+                    echo 'ST56269405p: Proceed to Production Phase'
                     sh """
                     targets=prodsvr6269405p.localdomain
                     locate_script='/tmp/6269405p/work/POC_REPO/6269405p_script'
@@ -64,7 +64,7 @@ pipeline {
                 }
                 else 
                 {
-                        echo "ST9533831p: Rollback Test Server"
+                        echo "ST56269405p: Rollback Test Server"
                     sh """
                     docker stop TESTsvr6269405p
                     docker rm TESTsvr6269405p
@@ -77,9 +77,9 @@ pipeline {
                 }
         }
         }
-        stage('ST9533831p'){
+        stage('ST66269405p'){
             steps {
-                echo 'ST9533831p: Completed updating to Production Container'
+                echo 'ST66269405p: Completed updating to Production Container'
             }
         }
     }
