@@ -14,9 +14,9 @@ pipeline {
                 script {
                     sh """
                     docker rm bkup-test-image || true
-                    docker commit TESTsvr9533831p bkup-test-image
-                    puppet resource file /tmp/9533831p/work ensure=absent force=true
-                    puppet resource file /tmp/9533831p/work ensure=directory
+                    docker commit TESTsvr6269405p bkup-test-image
+                    puppet resource file /tmp/6269405p/work ensure=absent force=true
+                    puppet resource file /tmp/6269405p/work ensure=directory
                     cd /tmp/6269405p/work
                     git clone https://github.com/RP23003387/POC_REPO.git
                     targets=testsvr6269405p.localdomain
@@ -66,8 +66,8 @@ pipeline {
                 {
                         echo "ST9533831p: Rollback Test Server"
                     sh """
-                    docker stop TESTsvr9533831p
-                    docker rm TESTsvr9533831p
+                    docker stop TESTsvr6269405p
+                    docker rm TESTsvr6269405p
                     docker run -d --privileged --network customnetwork -it -h TESTsvr6269405p.localdomain --name TESTsvr6269405p --add-host=TESTsvr6269405p.localdomain:172.20.113.60 --ip=192.168.20.100 bkup-test-image tail -f /dev/null
                     service ssh start
                     service apache2 start
