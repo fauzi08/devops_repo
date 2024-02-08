@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('ST16269405p') {
+        stage('ST9533831p') {
             steps {
-                echo "ST16269405p: Environement is prepared. Start to roll out to Test server"
+                echo "ST9533831p: Environement is prepared. Start to roll out to Test server"
             }
         }
           stage('ST26269405p') {
@@ -14,9 +14,9 @@ pipeline {
                 script {
                     sh """
                     docker rm bkup-test-image || true
-                    docker commit TESTsvr6269405p bkup-test-image
-                    puppet resource file /tmp/6269405p/work ensure=absent force=true
-                    puppet resource file /tmp/6269405p/work ensure=directory
+                    docker commit TESTsvr9533831p bkup-test-image
+                    puppet resource file /tmp/9533831p/work ensure=absent force=true
+                    puppet resource file /tmp/9533831p/work ensure=directory
                     cd /tmp/6269405p/work
                     git clone https://github.com/RP23003387/POC_REPO.git
                     targets=testsvr6269405p.localdomain
