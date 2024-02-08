@@ -1,12 +1,12 @@
-             pipeline {
+pipeline {
     agent any
     stages {
-        stage('ST9533831p') {
+        stage('ST16269405p') {
             steps {
                 echo "ST16269405p: Environement is prepared. Start to roll out to Test server"
             }
         }
-          stage('ST9533831p') {
+          stage('ST26269405p') {
             when {
                 expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
             }
@@ -28,13 +28,13 @@
             }
         }
       
-        stage('ST9533831p') {
+        stage('ST36269405p') {
             steps {
                 sh 'curl -Is http://testsvr6269405p.localdomain | head -n 1 > /tmp/TEST-result-file.txt'
 				echo 'ST6269405p: Test result for TEST server is generated: TEST-result-file'
             }
         }
-        stage('ST9533831p') {
+        stage('ST46269405p') {
             steps {
                 echo "ST46269405p: Test server's testing result has been inspected"
                     script{
@@ -46,7 +46,7 @@
                
             }
         }
-        stage('ST9533831p') {
+        stage('ST56269405p') {
             when {
                 expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
             }
@@ -77,7 +77,7 @@
                 }
         }
         }
-        stage('ST9533831p'){
+        stage('ST66269405p'){
             steps {
                 echo 'ST66269405p: Completed updating to Production Container'
             }
